@@ -1,17 +1,70 @@
+import java.util.Scanner;
 
-public class Runner
-{
+/**
+ Authors:
+ Cory Robertson
+ Narann Nathan
+ **/
+class Runner {
 
     public static void main(String[] args)
     {
         // 567 is the non prime number
-        final int[] testNumsFirst = {53, 5099, 1223, 567, 17};
+        //final int[] testNumsFirst = {53, 5099, 1223, 567, 17};
         // these are all prime
-        final int[] testNumsSecond = {1871, 8069, 3581, 6841};
+        //final int[] testNumsSecond = {1871, 8069, 3581, 6841};
 
-        System.out.println(isArrayPrimeIter(testNumsFirst, testNumsFirst.length));
-        System.out.println(isArrayPrimeIter(testNumsSecond, testNumsSecond.length));
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter size of array (max = 16): ");
+        int len = Integer.parseInt(input.nextLine());
+        int[] array = new int[len];
+        System.out.println("Enter the array of numbers (range 1 - 9999):");
 
+        for(int i = 0; i < array.length; i++)
+        {
+            int nums = input.nextInt();
+            array[i] = nums;
+
+            // System.out.print(array[i]);
+        }
+
+        boolean isPrimeIter = isArrayPrimeIter(array, array.length);
+        boolean isPrimeRecur = isArrayPrimeRecur(array, array.length);
+
+        if (isPrimeIter)
+        {
+            System.out.println("Prime Array using iteration");
+        }
+        else
+        {
+            System.out.println("Not a Prime Array using iteration");
+        }
+
+        if (isPrimeRecur)
+        {
+            System.out.println("Prime Array using recursion");
+        } else
+        {
+            System.out.println("Not a Prime Array using recursion");
+        }
+
+        // prompt user for input size of array
+
+        // initialize user input array with size from their input
+
+        // prompt user using for loop for each slot in array
+
+        // call prime iter array check and print out if it is or not prime
+
+        // call prime recursive check and print out if it is or not prime
+
+        //
+        // System.out.println(isArrayPrimeRecur(testNumsFirst, testNumsFirst.length));
+        // System.out.println(isArrayPrimeRecur(testNumsSecond, testNumsSecond.length));
+
+
+        // System.out.println(isArrayPrimeIter(testNumsFirst, testNumsFirst.length));
+        // System.out.println(isArrayPrimeIter(testNumsSecond, testNumsSecond.length));
     }
 
     /**
@@ -68,14 +121,17 @@ public class Runner
     public static boolean isArrayPrimeRecur(int[] arr, int len)
     {
         // we probably want to use len as an index, and just count downwards from len to 0!
-        System.out.println("Entering isArrayPrimeRecur");
+        if(len == 0)
+        {
+            System.out.println("Leaving isArrayPrimeRecur");
+            return true;
+        }
 
+        if(isPrimeRecur(arr[len - 1], 3))
+        {
+            return isArrayPrimeRecur(arr, len - 1);
+        }
 
-
-
-
-        // if we need to stop
-        // if we find a non prime number
         System.out.println("Leaving isArrayPrimeRecur");
         return false;
     }
@@ -159,5 +215,4 @@ public class Runner
         return isPrimeRecur(num, i + 2); // we add two cause we can skip evens
 
     }
-
 }
