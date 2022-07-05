@@ -24,7 +24,7 @@ class Runner
 
         for(int i = 0 ; i < array.length ; i++)
         {
-            int nums = input.nextInt(); // this line breaks each space seperated value into the nums variable
+            int nums = input.nextInt(); // this line breaks each space separated value into the nums variable
             array[i] = nums;
         }
 

@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass = 'Runner'
+    mainClassName = 'Runner'
 }
 
 group 'com.github.coryrobertson'
@@ -13,6 +13,17 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Runner'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 dependencies {
