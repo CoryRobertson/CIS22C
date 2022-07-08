@@ -1,3 +1,5 @@
+import java.security.InvalidParameterException;
+
 public class Dollar extends Currency
 {
 
@@ -25,14 +27,31 @@ public class Dollar extends Currency
         return name + " " + this.getWholePart() + "." + this.getFractionalPart();
     }
 
-    public void subtract(Dollar cur)
+
+    @Override
+    public void subtract(Currency cur) throws InvalidParameterException
     {
-        super.subtract(cur);
+        if(cur instanceof Dollar)
+        {
+            super.subtract(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot subtract " + cur.getClass().toString() + " from " + this.getClass().toString());
+        }
     }
 
-    public void add(Dollar cur)
+    @Override
+    public void add(Currency cur) throws InvalidParameterException
     {
-        super.add(cur);
+        if(cur instanceof Dollar)
+        {
+            super.add(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot add " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
     }
 
 }

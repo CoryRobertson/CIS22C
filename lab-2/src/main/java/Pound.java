@@ -1,3 +1,5 @@
+import java.security.InvalidParameterException;
+
 public class Pound extends Currency
 {
 
@@ -24,14 +26,30 @@ public class Pound extends Currency
         return name + " " + this.getWholePart() + "." + this.getFractionalPart();
     }
 
-    public void subtract(Pound cur)
+    @Override
+    public void subtract(Currency cur) throws InvalidParameterException
     {
-        super.subtract(cur);
+        if(cur instanceof Pound)
+        {
+            super.subtract(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot subtract " + cur.getClass().toString() + " from " + this.getClass().toString());
+        }
     }
 
-    public void add(Pound cur)
+    @Override
+    public void add(Currency cur) throws InvalidParameterException
     {
-        super.add(cur);
+        if(cur instanceof Pound)
+        {
+            super.add(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot add " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
     }
 
 }

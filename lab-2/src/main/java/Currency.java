@@ -76,7 +76,7 @@ public abstract class Currency
         this.fractionalPart = fractionalPart;
     }
 
-    public void subtract(Currency cur)
+    public void subtract(Currency cur) throws NumberFormatException
     {
 //        Currency largest;
 //        Currency smaller;
@@ -115,6 +115,9 @@ public abstract class Currency
     {
         boolean wholeEqual = this.getWholePart() == cur.getWholePart();
         boolean fracEqual = this.getFractionalPart() == cur.getFractionalPart();
+
+
+
         return (wholeEqual && fracEqual) == true;
     }
 
@@ -128,17 +131,19 @@ public abstract class Currency
 
     public void add(Currency cur)
     {
+        double value = ((this.getWholePart()) * 100) + (this.getFractionalPart());
+        double curValue = ((cur.getWholePart()) * 100) + (cur.getFractionalPart());
 
-        double value = this.getWholePart() + ((double)this.getFractionalPart()/100);
-        double curValue = cur.getWholePart() + ((double)cur.getFractionalPart()/100);
+        //double value = this.getWholePart() + ((double)this.getFractionalPart()/100);
+        //double curValue = cur.getWholePart() + ((double)cur.getFractionalPart()/100);
 
         double newValue = value + curValue;
         if(value < 0 || curValue < 0){
             throw new NumberFormatException("Value cannot be a negative");
         }
         // new value = 12.76
-        this.setWholePart((int)newValue/100); // set whole part to 12
-        this.setFractionalPart((int)newValue % 100); // set frac part to 76
+        this.setWholePart((int)newValue / 100); // set whole part to 12
+        this.setFractionalPart((int)(newValue % 100)); // set frac part to 76
     }
 
     @Override
