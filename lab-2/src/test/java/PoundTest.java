@@ -27,15 +27,15 @@ class PoundTest {
     @Test
     void invalidDollarObject()
     {
-        Throwable exception = assertThrows(NumberFormatException.class, () -> new Pound(-1.5));
-        Throwable exception2 = assertThrows(NumberFormatException.class, () -> new Pound(new Pound(-0.1)));
+        assertThrows(NumberFormatException.class, () -> new Pound(-1.5));
+        assertThrows(NumberFormatException.class, () -> new Pound(new Pound(-0.1)));
     }
 
     @Test
     void subtractInvalidType()
     {
         Currency poundSubTest = new Pound(10.5);
-        Throwable exception = assertThrows(InvalidParameterException.class, () -> poundSubTest.subtract(new Dollar(1.0)));
+        assertThrows(InvalidParameterException.class, () -> poundSubTest.subtract(new Dollar(1.0)));
     }
 
     @Test
@@ -51,7 +51,7 @@ class PoundTest {
     void addInvalidType()
     {
         Currency poundSubTest = new Pound(10.5);
-        Throwable exception = assertThrows(InvalidParameterException.class, () -> poundSubTest.add(new Dollar(1.0)));
+        assertThrows(InvalidParameterException.class, () -> poundSubTest.add(new Dollar(1.0)));
     }
 
     @Test

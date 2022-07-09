@@ -26,15 +26,15 @@ class DollarTest {
     @Test
     void invalidDollarObject()
     {
-        Throwable exception = assertThrows(NumberFormatException.class, () -> new Dollar(-1.5));
-        Throwable exception2 = assertThrows(NumberFormatException.class, () -> new Dollar(new Dollar(-0.1)));
+        assertThrows(NumberFormatException.class, () -> new Dollar(-1.5));
+        assertThrows(NumberFormatException.class, () -> new Dollar(new Dollar(-0.1)));
     }
 
     @Test
     void subtractInvalidType()
     {
         Currency dollarSubTest = new Dollar(10.5);
-        Throwable exception = assertThrows(InvalidParameterException.class, () -> dollarSubTest.subtract(new Pound(1.0)));
+        assertThrows(InvalidParameterException.class, () -> dollarSubTest.subtract(new Pound(1.0)));
     }
 
     @Test
@@ -49,7 +49,7 @@ class DollarTest {
     void addInvalidType()
     {
         Currency dollarSubTest = new Dollar(10.5);
-        Throwable exception = assertThrows(InvalidParameterException.class, () -> dollarSubTest.add(new Pound(1.0)));
+        assertThrows(InvalidParameterException.class, () -> dollarSubTest.add(new Pound(1.0)));
     }
 
     @Test
