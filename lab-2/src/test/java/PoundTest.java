@@ -53,4 +53,14 @@ class PoundTest {
         Currency poundSubTest = new Pound(10.5);
         Throwable exception = assertThrows(InvalidParameterException.class, () -> poundSubTest.add(new Dollar(1.0)));
     }
+
+    @Test
+    void toDoubleDollar()
+    {
+        double initAmount = 5.98;
+        double addAmount = 1.23;
+        Pound pound = new Pound(initAmount);
+        pound.add(new Pound(addAmount));
+        Assertions.assertEquals(pound.toDouble(), initAmount + addAmount, 0.000001);
+    }
 }

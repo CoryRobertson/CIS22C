@@ -9,11 +9,7 @@ public class Runner
         Currency[] currencies = new Currency[2];
 
         currencies[0] = new Pound(0);
-        currencies[1] = new Dollar(5);
-
-//        Dollar sub = (Dollar) currencies[1];
-//        sub.subtract(new Pound(0.1));
-        currencies[1].add(new Pound(1));
+        currencies[1] = new Dollar(0);
 
         System.out.println(" ");
 

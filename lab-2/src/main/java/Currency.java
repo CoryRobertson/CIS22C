@@ -33,11 +33,14 @@ public abstract class Currency
             throw new NumberFormatException(" value cannot be a negative number: " + value);
         }
 
-        int whole = (int) value; // whole = 12
-        int frac = (int) ((value - whole) * 100); // frac = 58
-
-        this.wholePart = whole;
-        this.fractionalPart = frac;
+//        int whole = (int) value; // whole = 12
+//        int frac = (int) ((value - whole) * 100); // frac = 58
+        int newWholePart = (int) (value);
+        int newFracPart = (int) ((value * 100.0) % 100.0);
+        this.setWholePart(newWholePart);
+        this.setFractionalPart(newFracPart);
+//        this.wholePart = whole;
+//        this.fractionalPart = frac;
     }
 
     public Currency(Currency cur)
@@ -150,6 +153,11 @@ public abstract class Currency
     public String toString()
     {
         return this.getClass().toString() + " " + this.getWholePart() + "." + this.getFractionalPart();
+    }
+
+    public double toDouble()
+    {
+        return ((this.getWholePart()*100) + this.getFractionalPart()) / 100.0;
     }
 
 }
