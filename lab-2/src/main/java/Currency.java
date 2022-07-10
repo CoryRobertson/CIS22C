@@ -1,7 +1,6 @@
 public abstract class Currency
 {
   /*
-
     -Default Construction (i.e. no parameters passed).
     -Construction based on one single input of type double - create logical objects only, i.e. no negative value objects allowed.
     -Copy Constructor and/or Assignment (i.e. the input is an object of the same class), as applicable to your programming language of choice.
@@ -14,7 +13,6 @@ public abstract class Currency
     -?A method called toString to 'stringify' the name and value of a currency object in the form "xx.yy" followed by the derived currency name, e.g. 1.23 Dollar or 2.46 Pound.
     -All of the above should be instance methods and not static.
     -The add and subtract as specified should manipulate the object on which they are invoked. It is allowed to have overloaded methods that create and return new objects .
-
   */
 
     private int wholePart;
@@ -22,7 +20,8 @@ public abstract class Currency
 
     public Currency()
     {
-
+        this.setWholePart(0);
+        this.setFractionalPart(0);
     }
 
     public Currency(double value) // value = 12.58
@@ -30,25 +29,20 @@ public abstract class Currency
 
         if (value < 0)
         {
-            throw new NumberFormatException(" value cannot be a negative number: " + value);
+            throw new IllegalArgumentException(" value cannot be a negative number: " + value);
         }
 
-//        int whole = (int) value; // whole = 12
-//        int frac = (int) ((value - whole) * 100); // frac = 58
         int newWholePart = (int) (value);
         int newFracPart = (int) ((value * 100.0) % 100.0);
         this.setWholePart(newWholePart);
         this.setFractionalPart(newFracPart);
-//        this.wholePart = whole;
-//        this.fractionalPart = frac;
+
     }
 
     public Currency(Currency cur)
     {
-
         this.wholePart = cur.wholePart;
         this.fractionalPart = cur.fractionalPart;
-
     }
 
     public int getWholePart()
@@ -60,7 +54,7 @@ public abstract class Currency
     {
         if (wholePart < 0)
         {
-            throw new NumberFormatException(" value cannot be a negative number: " + wholePart);
+            throw new IllegalArgumentException(" value cannot be a negative number: " + wholePart);
         }
         this.wholePart = wholePart;
     }
@@ -74,36 +68,18 @@ public abstract class Currency
     {
         if (fractionalPart < 0)
         {
-            throw new NumberFormatException(" value cannot be a negative number: " + fractionalPart);
+            throw new IllegalArgumentException(" value cannot be a negative number: " + fractionalPart);
         }
         this.fractionalPart = fractionalPart;
     }
 
     public void subtract(Currency cur) throws NumberFormatException
     {
-//        Currency largest;
-//        Currency smaller;
-//        if(cur.isGreater(this))
-//        {
-//            largest = cur;
-//            smaller = this;
-//        }
-//        else
-//        {
-//            largest = this;
-//            smaller = cur;
-//        }
-
-        // 1.25 - 0 = 1.25
-        // 0 - 1.25 = -1.25
-//        int newWholePart =  this.getWholePart() - cur.getWholePart();
-//        int newFracPart = this.getFractionalPart() - cur.getFractionalPart();
-
         double value = ((this.getWholePart() - cur.getWholePart()) * 100) + (this.getFractionalPart() - cur.getFractionalPart());
 
         if (value < 0) // negative value check exception
         {
-            throw new NumberFormatException(" value cannot be a negative number: " + this + ":" + value + " - " + cur);
+            throw new IllegalArgumentException(" value cannot be a negative number: " + this + ":" + value + " - " + cur);
         }
 
         int newWholePart = (int) (value / 100);
@@ -118,9 +94,6 @@ public abstract class Currency
     {
         boolean wholeEqual = this.getWholePart() == cur.getWholePart();
         boolean fracEqual = this.getFractionalPart() == cur.getFractionalPart();
-
-
-
         return (wholeEqual && fracEqual) == true;
     }
 
@@ -155,6 +128,9 @@ public abstract class Currency
         return this.getClass().toString() + " " + this.getWholePart() + "." + this.getFractionalPart();
     }
 
+    /**
+     * @return the value of the currency in double form, e.g. 1.26
+     */
     public double toDouble()
     {
         return ((this.getWholePart()*100) + this.getFractionalPart()) / 100.0;

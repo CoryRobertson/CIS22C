@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 import java.security.InvalidParameterException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PoundTest {
+class PoundTest
+{
 
     @Test
     void subtract()
@@ -27,15 +29,15 @@ class PoundTest {
     @Test
     void invalidDollarObject()
     {
-        assertThrows(NumberFormatException.class, () -> new Pound(-1.5));
-        assertThrows(NumberFormatException.class, () -> new Pound(new Pound(-0.1)));
+        assertThrows(IllegalArgumentException.class, () -> new Pound(-1.5));
+        assertThrows(IllegalArgumentException.class, () -> new Pound(new Pound(-0.1)));
     }
 
     @Test
     void subtractInvalidType()
     {
         Currency poundSubTest = new Pound(10.5);
-        assertThrows(InvalidParameterException.class, () -> poundSubTest.subtract(new Dollar(1.0)));
+        assertThrows(IllegalArgumentException.class, () -> poundSubTest.subtract(new Dollar(1.0)));
     }
 
     @Test
@@ -51,7 +53,7 @@ class PoundTest {
     void addInvalidType()
     {
         Currency poundSubTest = new Pound(10.5);
-        assertThrows(InvalidParameterException.class, () -> poundSubTest.add(new Dollar(1.0)));
+        assertThrows(IllegalArgumentException.class, () -> poundSubTest.add(new Dollar(1.0)));
     }
 
     @Test
@@ -62,5 +64,14 @@ class PoundTest {
         Pound pound = new Pound(initAmount);
         pound.add(new Pound(addAmount));
         Assertions.assertEquals(pound.toDouble(), initAmount + addAmount, 0.000001);
+    }
+
+    @Test
+    void comparisonTest()
+    {
+        Dollar dollar = new Dollar(9.46);
+        Pound pound = new Pound(15.79);
+        Assertions.assertThrows(InvalidParameterException.class,() -> pound.isGreater(dollar));
+        Assertions.assertThrows(InvalidParameterException.class, () -> pound.isEqual(dollar));
     }
 }

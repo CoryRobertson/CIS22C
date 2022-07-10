@@ -40,6 +40,32 @@ public class Pound extends Currency
     }
 
     @Override
+    public boolean isEqual(Currency cur)
+    {
+        if(cur instanceof Pound)
+        {
+            return super.isEqual(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
+    }
+
+    @Override
+    public boolean isGreater(Currency cur)
+    {
+        if(cur instanceof Pound)
+        {
+            return super.isGreater(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
+    }
+
+    @Override
     public void add(Currency cur) throws InvalidParameterException
     {
         if(cur instanceof Pound)

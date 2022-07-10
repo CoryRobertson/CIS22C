@@ -42,6 +42,32 @@ public class Dollar extends Currency
     }
 
     @Override
+    public boolean isEqual(Currency cur)
+    {
+        if(cur instanceof Dollar)
+        {
+            return super.isEqual(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
+    }
+
+    @Override
+    public boolean isGreater(Currency cur)
+    {
+        if(cur instanceof Dollar)
+        {
+            return super.isGreater(cur);
+        }
+        else
+        {
+            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+        }
+    }
+
+    @Override
     public void add(Currency cur) throws InvalidParameterException
     {
         if(cur instanceof Dollar)

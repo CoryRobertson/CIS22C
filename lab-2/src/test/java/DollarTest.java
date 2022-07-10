@@ -5,7 +5,8 @@ import java.security.InvalidParameterException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DollarTest {
+class DollarTest
+{
 
     @Test
     void subtract()
@@ -26,15 +27,15 @@ class DollarTest {
     @Test
     void invalidDollarObject()
     {
-        assertThrows(NumberFormatException.class, () -> new Dollar(-1.5));
-        assertThrows(NumberFormatException.class, () -> new Dollar(new Dollar(-0.1)));
+        assertThrows(IllegalArgumentException.class, () -> new Dollar(-1.5));
+        assertThrows(IllegalArgumentException.class, () -> new Dollar(new Dollar(-0.1)));
     }
 
     @Test
     void subtractInvalidType()
     {
         Currency dollarSubTest = new Dollar(10.5);
-        assertThrows(InvalidParameterException.class, () -> dollarSubTest.subtract(new Pound(1.0)));
+        assertThrows(IllegalArgumentException.class, () -> dollarSubTest.subtract(new Pound(1.0)));
     }
 
     @Test
@@ -49,7 +50,7 @@ class DollarTest {
     void addInvalidType()
     {
         Currency dollarSubTest = new Dollar(10.5);
-        assertThrows(InvalidParameterException.class, () -> dollarSubTest.add(new Pound(1.0)));
+        assertThrows(IllegalArgumentException.class, () -> dollarSubTest.add(new Pound(1.0)));
     }
 
     @Test
@@ -60,5 +61,14 @@ class DollarTest {
         Dollar dollar = new Dollar(initAmount);
         dollar.add(new Dollar(addAmount));
         Assertions.assertEquals(dollar.toDouble(), initAmount + addAmount, 0.000001);
+    }
+
+    @Test
+    void comparisonTest()
+    {
+        Dollar dollar = new Dollar(3.50);
+        Pound pound = new Pound(3.25);
+        Assertions.assertThrows(InvalidParameterException.class,() -> dollar.isGreater(pound));
+        Assertions.assertThrows(InvalidParameterException.class, () -> dollar.isEqual(pound));
     }
 }
