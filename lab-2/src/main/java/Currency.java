@@ -64,7 +64,7 @@ public abstract class Currency
         return fractionalPart;
     }
 
-    public void setFractionalPart(int fractionalPart)
+    public void setFractionalPart(int fractionalPart) throws IllegalArgumentException
     {
         if (fractionalPart < 0)
         {
@@ -73,7 +73,7 @@ public abstract class Currency
         this.fractionalPart = fractionalPart;
     }
 
-    public void subtract(Currency cur) throws NumberFormatException
+    public void subtract(Currency cur) throws IllegalArgumentException
     {
         double value = ((this.getWholePart() - cur.getWholePart()) * 100) + (this.getFractionalPart() - cur.getFractionalPart());
 
@@ -129,7 +129,7 @@ public abstract class Currency
     }
 
     /**
-     * @return the value of the currency in double form, e.g. 1.26
+     * @return the value of the currency in double form, e.g. whole = 1, frac = 26, output = 1.26
      */
     public double toDouble()
     {

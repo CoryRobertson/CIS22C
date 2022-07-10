@@ -20,8 +20,9 @@ public class Runner
             System.out.println(currencies[0]);
             System.out.println(currencies[1]);
 
-            System.out.println("1) Add(a) or Subtact(s)?");
-            System.out.println("2) Quit?");
+            System.out.println("1) Type (a) to Add or (s) to Subtact");
+            System.out.println("2) Type (q) to Quit?");
+            System.out.print("Your input ?: ");
             input = in.nextLine();
 
             if(input.equalsIgnoreCase("a"))
@@ -33,19 +34,27 @@ public class Runner
                     System.out.print("Enter value to add: ");
                     input = in.nextLine();
                     System.out.print("Enter currency type: ");
-                    input = in.nextLine();
-//                    if()
-//                        double value = Double.parseDouble(input);
-//                    currencies[0].add(new Pound(value));
+                    String type = in.nextLine();
+                    if(type.equalsIgnoreCase("Pound")){
+                        double value = Double.parseDouble(input);
+                        currencies[0].add(new Pound(value));
+                    }else{
+                        System.out.println("Invalid addition\n");
+                    }
 
                 }else if(input.equalsIgnoreCase("d"))
 
                     System.out.print("Enter value to add: ");
                 input = in.nextLine();
-                double value = Double.parseDouble(input);
-                currencies[0].add(new Dollar(value));
+                System.out.print("Enter type: ");
+                String type = in.nextLine();
+                if(type.equalsIgnoreCase("Dollar"))
                 {
-
+                    double value = Double.parseDouble(input);
+                    currencies[1].add(new Dollar(value));
+                }
+                else{
+                    System.out.println("Invalid addition\n");
                 }
 
                 // continue;
@@ -80,7 +89,14 @@ public class Runner
                     if(type.equalsIgnoreCase("dollar"))
                     {
                         double value = Double.parseDouble(input);
-                        currencies[1].subtract(new Dollar(value));
+                        try
+                        {
+                            currencies[1].subtract(new Dollar(value));
+                        }
+                        catch (IllegalArgumentException e)
+                        {
+                            System.out.println("Invalid subtraction");
+                        }
                     }
                     else
                     {

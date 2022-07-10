@@ -1,4 +1,3 @@
-import java.security.InvalidParameterException;
 
 public class Pound extends Currency
 {
@@ -27,7 +26,7 @@ public class Pound extends Currency
     }
 
     @Override
-    public void subtract(Currency cur) throws InvalidParameterException
+    public void subtract(Currency cur) throws IllegalArgumentException
     {
         if(cur instanceof Pound)
         {
@@ -35,12 +34,12 @@ public class Pound extends Currency
         }
         else
         {
-            throw new InvalidParameterException("Cannot subtract " + cur.getClass().toString() + " from " + this.getClass().toString());
+            throw new IllegalArgumentException("Cannot subtract " + cur.getClass().toString() + " from " + this.getClass().toString());
         }
     }
 
     @Override
-    public boolean isEqual(Currency cur)
+    public boolean isEqual(Currency cur) throws IllegalArgumentException
     {
         if(cur instanceof Pound)
         {
@@ -48,12 +47,12 @@ public class Pound extends Currency
         }
         else
         {
-            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+            throw new IllegalArgumentException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
         }
     }
 
     @Override
-    public boolean isGreater(Currency cur)
+    public boolean isGreater(Currency cur) throws IllegalArgumentException
     {
         if(cur instanceof Pound)
         {
@@ -61,12 +60,12 @@ public class Pound extends Currency
         }
         else
         {
-            throw new InvalidParameterException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
+            throw new IllegalArgumentException("Cannot compare " + cur.getClass().toString() + " to " + this.getClass().toString());
         }
     }
 
     @Override
-    public void add(Currency cur) throws InvalidParameterException
+    public void add(Currency cur) throws IllegalArgumentException
     {
         if(cur instanceof Pound)
         {
@@ -74,7 +73,7 @@ public class Pound extends Currency
         }
         else
         {
-            throw new InvalidParameterException("Cannot add " + cur.getClass().toString() + " to " + this.getClass().toString());
+            throw new IllegalArgumentException("Cannot add " + cur.getClass().toString() + " to " + this.getClass().toString());
         }
     }
 
