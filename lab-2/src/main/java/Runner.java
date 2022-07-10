@@ -25,39 +25,37 @@ public class Runner
             System.out.print("Your input ?: ");
             input = in.nextLine();
 
-            if(input.equalsIgnoreCase("a"))
-            {
+            if(input.equalsIgnoreCase("a")) {
                 System.out.print("1) Pound(p) or Dollar(d)?");
                 input = in.nextLine();
-                if(input.equalsIgnoreCase("p"))
-                {
+                if (input.equalsIgnoreCase("p")) {
                     System.out.print("Enter value to add: ");
                     input = in.nextLine();
                     System.out.print("Enter currency type: ");
                     String type = in.nextLine();
-                    if(type.equalsIgnoreCase("Pound")){
+                    if (type.equalsIgnoreCase("Pound")) {
                         double value = Double.parseDouble(input);
                         currencies[0].add(new Pound(value));
-                    }else{
+                    } else {
                         System.out.println("Invalid addition\n");
                     }
 
-                }else if(input.equalsIgnoreCase("d"))
+                } else if (input.equalsIgnoreCase("d"))
+                {
 
                     System.out.print("Enter value to add: ");
-                input = in.nextLine();
-                System.out.print("Enter type: ");
-                String type = in.nextLine();
-                if(type.equalsIgnoreCase("Dollar"))
-                {
-                    double value = Double.parseDouble(input);
-                    currencies[1].add(new Dollar(value));
-                }
-                else{
-                    System.out.println("Invalid addition\n");
-                }
+                    input = in.nextLine();
+                    System.out.print("Enter type: ");
+                    String type = in.nextLine();
+                    if (type.equalsIgnoreCase("Dollar")) {
+                        double value = Double.parseDouble(input);
+                        currencies[1].add(new Dollar(value));
+                    } else {
+                        System.out.println("Invalid addition\n");
+                    }
 
                 // continue;
+                }
             }
 
             if(input.equals("s"))
@@ -105,8 +103,6 @@ public class Runner
                 }
                 // continue;
             }
-
-
         }
 
     }

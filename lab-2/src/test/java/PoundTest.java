@@ -71,7 +71,7 @@ class PoundTest
     {
         Dollar dollar = new Dollar(9.46);
         Pound pound = new Pound(15.79);
-        Assertions.assertThrows(InvalidParameterException.class,() -> pound.isGreater(dollar));
-        Assertions.assertThrows(InvalidParameterException.class, () -> pound.isEqual(dollar));
+        Assertions.assertThrows(IllegalArgumentException.class,() -> pound.isGreater(dollar));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> pound.isEqual(dollar));
     }
 }
