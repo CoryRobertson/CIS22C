@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
-public class Runner
+/**
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 2
+ Statement of Lab: To demonstrate usage of polymorphism, inheritance, and class design to simulate currency
+ **/
+public class Lab2main
 {
 
     public static void main(String[] args)
@@ -20,12 +28,13 @@ public class Runner
             System.out.println(currencies[0]);
             System.out.println(currencies[1]);
 
-            System.out.println("1) Type (a) to Add or (s) to Subtact");
+            System.out.println("1) Type (a) to Add or (s) to Subtract");
             System.out.println("2) Type (q) to Quit?");
             System.out.print("Your input ?: ");
             input = in.nextLine();
 
-            if(input.equalsIgnoreCase("a")) {
+            if(input.equalsIgnoreCase("a"))
+            {
                 System.out.print("1) Pound(p) or Dollar(d)?");
                 input = in.nextLine();
                 if (input.equalsIgnoreCase("p")) {
@@ -54,7 +63,7 @@ public class Runner
                         System.out.println("Invalid addition\n");
                     }
 
-                // continue;
+                    // continue;
                 }
             }
 
@@ -103,7 +112,10 @@ public class Runner
                 }
                 // continue;
             }
+
+
         }
+        in.close();
 
     }
 }

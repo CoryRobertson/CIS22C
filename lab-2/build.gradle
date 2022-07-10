@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClassName = 'Runner'
+    mainClassName = 'Lab2main'
 }
 
 group 'com.github.coryrobertson'
@@ -18,7 +18,7 @@ repositories {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'Runner'
+                'Main-Class': 'Lab2main'
         )
     }
     from {
