@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-/**
+/*
  Authors:
  Cory Robertson
  Naran Nathan
  Lab Team: 26
  Lab Number: 2
  Statement of Lab: To demonstrate usage of polymorphism, inheritance, and class design to simulate currency
- **/
+ */
 public class Lab2main
 {
 

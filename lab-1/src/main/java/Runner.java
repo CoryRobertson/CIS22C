@@ -1,12 +1,11 @@
-
-/**
+/*
  Authors:
  Cory Robertson
  Naran Nathan
  Lab Team: 26
  Lab Number: 1
  Statement of Lab: To demonstrate the usage of iterative and recursive functions by checking if a number is a prime.
- **/
+ */
 import java.util.Scanner;
 
 class Runner
@@ -200,7 +199,7 @@ class Runner
             return true;
         }
 
-        // divison check for primality
+        // division check for primality
         if (num % i == 0)
         {
             System.out.println("Leaving isPrimeRecur \n");

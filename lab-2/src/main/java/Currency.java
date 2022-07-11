@@ -1,19 +1,13 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 2
+ Statement of Lab: To demonstrate usage of polymorphism, inheritance, and class design to simulate currency
+ */
 public abstract class Currency
 {
-  /*
-    -Default Construction (i.e. no parameters passed).
-    -Construction based on one single input of type double - create logical objects only, i.e. no negative value objects allowed.
-    -Copy Constructor and/or Assignment (i.e. the input is an object of the same class), as applicable to your programming language of choice.
-    !--Destructor, as applicable to your programming language of choice.
-    -Setters and Getters for all attributes, as may be necessary.
-    A method called add for adding an input object of the same currency.
-    -A method called subtract for subtracting an input object of the same currency - the result should be logical, i.e. negative results are not allowed.
-    -A method called isEqual for comparing an input object of the same currency for equality/inequality.
-    -A method called isGreater for comparing an input object of the same currency to identify which object is larger or smaller.
-    -?A method called toString to 'stringify' the name and value of a currency object in the form "xx.yy" followed by the derived currency name, e.g. 1.23 Dollar or 2.46 Pound.
-    -All of the above should be instance methods and not static.
-    -The add and subtract as specified should manipulate the object on which they are invoked. It is allowed to have overloaded methods that create and return new objects .
-  */
 
     private int wholePart;
     private int fractionalPart;
@@ -73,6 +67,10 @@ public abstract class Currency
         this.fractionalPart = fractionalPart;
     }
 
+    /**
+     * pre: A currency object that is not null
+     * post: Changes the value of the parent object to the difference of both of the objects
+     **/
     public void subtract(Currency cur) throws IllegalArgumentException
     {
         double value = ((this.getWholePart() - cur.getWholePart()) * 100) + (this.getFractionalPart() - cur.getFractionalPart());
@@ -90,13 +88,21 @@ public abstract class Currency
 
     }
 
+    /**
+     * pre: A currency object that is not null
+     * post: Returns a true value if the wholePart and fractionalPart are equals.
+     **/
     public boolean isEqual(Currency cur)
     {
         boolean wholeEqual = this.getWholePart() == cur.getWholePart();
         boolean fracEqual = this.getFractionalPart() == cur.getFractionalPart();
-        return (wholeEqual && fracEqual) == true;
+        return (wholeEqual && fracEqual);
     }
 
+    /**
+     * pre: A currency object that is not null
+     * post: Returns true if and only if parent object is greater than given object
+     **/
     public boolean isGreater(Currency cur)
     {
         double value = this.getWholePart() + ((double)this.getFractionalPart()/100);
@@ -104,14 +110,14 @@ public abstract class Currency
         return (value > curValue);
     }
 
-
+    /**
+     * pre: A currency object that is not null
+     * post: Changes the value of the parent currency to the sum of both of the currencies
+     **/
     public void add(Currency cur)
     {
         double value = ((this.getWholePart()) * 100) + (this.getFractionalPart());
         double curValue = ((cur.getWholePart()) * 100) + (cur.getFractionalPart());
-
-        //double value = this.getWholePart() + ((double)this.getFractionalPart()/100);
-        //double curValue = cur.getWholePart() + ((double)cur.getFractionalPart()/100);
 
         double newValue = value + curValue;
         if(value < 0 || curValue < 0){
@@ -122,6 +128,10 @@ public abstract class Currency
         this.setFractionalPart((int)(newValue % 100)); // set frac part to 76
     }
 
+    /**
+     * pre: n/a
+     * post: Returns the name of the class, plus the wholePart and fractionalPart combined.
+     **/
     @Override
     public String toString()
     {
