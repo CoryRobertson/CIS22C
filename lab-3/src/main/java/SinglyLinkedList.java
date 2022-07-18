@@ -152,22 +152,17 @@ public class SinglyLinkedList
         System.out.println();
     }
 
-//    public void countCurrency(Currency cur)
-//    {
-//        LinkNode a = getStart();
-//
-//        while(a != null)
-//        {
-//
-//        }
-//    }
-
-    /*
-        removeCurrency method which takes a Currency object as parameter and removes that Currency object from
-            the list and may return a copy of the Currency.
-        removeCurrency overload method which takes a node index as parameter and removes the Currency object
-            at that index and may return a copy of the Currency.
-     */
+    public int countCurrency()
+    {
+        LinkNode a = getStart();
+        int count = 0;
+        while(a != null)
+        {
+            a = a.getNextNode();
+            count = count + 1;
+        }
+        return count;
+    }
 
     public void removeCurrency(int index)
     {

@@ -213,4 +213,18 @@ class SinglyLinkedListTest {
 
         Assertions.assertEquals(3, list.getCount());
     }
+
+    @Test
+    void countCurrency()
+    {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.addCurrency(new Dollar(2.5));
+        list.addCurrency(new Dollar(1.1));
+        list.addCurrency(new Dollar(1.0));
+        Assertions.assertEquals(3,list.countCurrency());
+        list.addCurrency(new Dollar(1.1));
+        list.addCurrency(new Dollar(1.0));
+        Assertions.assertEquals(5,list.countCurrency());
+
+    }
 }
