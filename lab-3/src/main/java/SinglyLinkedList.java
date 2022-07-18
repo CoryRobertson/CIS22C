@@ -149,7 +149,7 @@ public class SinglyLinkedList
             a = a.getNextNode();
             count = count + 1;
         }
-        System.out.println("");
+        System.out.println();
     }
 
 //    public void countCurrency(Currency cur)
@@ -172,6 +172,15 @@ public class SinglyLinkedList
     public void removeCurrency(Currency cur)
     {
         LinkNode previousNode = this.getStart();
+
+        if(previousNode.getData().isEqual(cur))
+        {
+            this.setStart(previousNode.getNextNode());
+            this.setCount(this.count - 1);
+            this.setEnd(this.findEnd());
+            return;
+        }
+
         while(!previousNode.getNextNode().getData().isEqual(cur))
         {
             previousNode = previousNode.getNextNode();

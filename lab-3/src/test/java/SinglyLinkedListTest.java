@@ -29,6 +29,8 @@ class SinglyLinkedListTest {
         Assertions.assertEquals(5,list2.getCount());
         Assertions.assertEquals(1.0, list2.getEnd().getData().toDouble());
         Assertions.assertEquals(1.0, list.getEnd().getData().toDouble());
+        Assertions.assertEquals(2.5, list.getStart().getData().toDouble());
+        Assertions.assertEquals(2.5, list2.getStart().getData().toDouble());
 
     }
 
@@ -163,5 +165,23 @@ class SinglyLinkedListTest {
         Assertions.assertEquals(1.0,a);
 
         Assertions.assertEquals(4,list.getCount());
+
+        SinglyLinkedList list3 = new SinglyLinkedList();
+        list3.addCurrency(new Dollar(3.49));
+        list3.addCurrency(new Dollar(7.93));
+        list3.addCurrency(new Dollar(17.45));
+        list3.addCurrency(new Dollar(4.96));
+        list3.removeCurrency(new Dollar(3.49));
+        Assertions.assertEquals(7.93, list3.getStart().getData().toDouble());
+
+        SinglyLinkedList list4 = new SinglyLinkedList();
+        list4.addCurrency(new Dollar(1.2));
+        list4.addCurrency(new Dollar(1.2));
+        list4.removeCurrency(new Dollar(1.2));
+        list4.removeCurrency(new Dollar(1.2));
+        Assertions.assertEquals(0,list4.getCount());
+
+
+
     }
 }
