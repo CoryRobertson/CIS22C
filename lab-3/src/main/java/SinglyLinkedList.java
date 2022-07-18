@@ -169,23 +169,35 @@ public class SinglyLinkedList
             at that index and may return a copy of the Currency.
      */
 
+    public void removeCurrency(int index)
+    {
+        LinkNode a = this.getStart();
+        for(int i = 0; i < index; i++)
+        {
+            a = a.getNextNode();
+        }
+        removeCurrency(a.getData());
+    }
+
     public void removeCurrency(Currency cur)
     {
         LinkNode previousNode = this.getStart();
 
         if(previousNode.getData().isEqual(cur))
-        {
-            this.setStart(previousNode.getNextNode());
-            this.setCount(this.count - 1);
-            this.setEnd(this.findEnd());
-            return;
-        }
+        {// this case occurs when the start is the node to remove
 
-        while(!previousNode.getNextNode().getData().isEqual(cur))
-        {
-            previousNode = previousNode.getNextNode();
+            this.setStart(previousNode.getNextNode());
+
         }
-        previousNode.setNextNode(previousNode.getNextNode().getNextNode());
+        else // else we need to go find the node that has the data to remove
+        {
+
+            while (!previousNode.getNextNode().getData().isEqual(cur)) {
+                previousNode = previousNode.getNextNode();
+            }
+            previousNode.setNextNode(previousNode.getNextNode().getNextNode());
+
+        }
         this.setCount(this.count - 1);
         this.setEnd(this.findEnd());
     }

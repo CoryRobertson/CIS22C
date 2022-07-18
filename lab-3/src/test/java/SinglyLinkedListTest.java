@@ -142,7 +142,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void removeCurrency()
+    void removeCurrencyObject()
     {
         SinglyLinkedList list = new SinglyLinkedList();
         list.addCurrency(new Dollar(2.5));
@@ -182,6 +182,35 @@ class SinglyLinkedListTest {
         Assertions.assertEquals(0,list4.getCount());
 
 
+        SinglyLinkedList list5 = new SinglyLinkedList();
+        list5.addCurrency(new Dollar(21.5));
+        list5.addCurrency(new Dollar(1.78));
+        list5.addCurrency(new Dollar(3.14));
+        list5.removeCurrency(new Dollar(21.5));
+        Assertions.assertEquals(1.78, list5.getStart().getData().toDouble());
+    }
 
+    @Test
+    void removeCurrencyIndex()
+    {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.addCurrency(new Dollar(1.2));
+        list.addCurrency(new Dollar(1.21));
+        list.addCurrency(new Dollar(3.96));
+        list.addCurrency(new Dollar(7.28));
+        list.addCurrency(new Dollar(15.12));
+
+        list.removeCurrency(0);
+        list.removeCurrency(3);
+
+        double a = list.getNodeAtIndex(0).getData().toDouble();
+        double b = list.getNodeAtIndex(1).getData().toDouble();
+        double c = list.getNodeAtIndex(2).getData().toDouble();
+
+        Assertions.assertEquals(1.21, a);
+        Assertions.assertEquals(3.96, b);
+        Assertions.assertEquals(7.28, c);
+
+        Assertions.assertEquals(3, list.getCount());
     }
 }
