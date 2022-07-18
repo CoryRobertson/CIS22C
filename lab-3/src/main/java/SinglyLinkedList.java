@@ -44,52 +44,63 @@ public class SinglyLinkedList
         return end;
     }
 
+
     public void setEnd(LinkNode end)
     {
         this.end = end;
     }
 
 
-
-    public void push(Currency data)
-    {
-        LinkNode newNode = new LinkNode(data);
-        newNode.setNextNode(this.start);
-        this.setStart(newNode);
-        this.setEnd(findEnd());
-        this.setCount(this.count + 1);
-    }
+// this is for queue and stack only
+//    public void push(Currency data)
+//    {
+//        LinkNode newNode = new LinkNode(data);
+//        newNode.setNextNode(this.start);
+//        this.setStart(newNode);
+//        this.setEnd(findEnd());
+//        this.setCount(this.count + 1);
+//    }
 
     public void addCurrency(Currency cur, int index)
     {
         LinkNode a = this.getStart();
-        for(int i = 0 ; i < index - 1; i++)
-        {
-            a = a.getNextNode();
+        if (a != null) {
+            for (int i = 0; i < index - 1; i++) {
+                a = a.getNextNode();
+            }
+            a.setNextNode(new LinkNode(a.getNextNode(), cur));
         }
-        a.setNextNode(new LinkNode(a.getNextNode(), cur));
+        else
+        { // list start is null
+            this.setStart(new LinkNode(cur));
+        }
         this.setCount(this.getCount() + 1);
-
-
+        this.setEnd(this.findEnd());
     }
 
 
     //this adds to end ??!?
-//    public void addCurrency(Currency cur, LinkNode previousNode)
-//    {
-//        LinkNode newNode = new LinkNode(cur);
-//
-//
-//        LinkNode last = this.getStart();
-//
-//        while(last.getNextNode() != null)
-//        {
-//            last = last.getNextNode();
-//        }
-//        last.setNextNode(newNode);
-//
-//
-//    }
+    public void addCurrency(Currency cur)
+    {
+        LinkNode newNode = new LinkNode(cur);
+
+
+        LinkNode last = this.getStart();
+
+        if(last != null)
+        {
+            while (last.getNextNode() != null) {
+                last = last.getNextNode();
+            }
+            last.setNextNode(newNode);
+        } else
+        {
+            this.setStart(new LinkNode(cur));
+        }
+        this.setCount(this.getCount() + 1);
+        this.setEnd(this.findEnd());
+
+    }
 
     public int findCurrency(Currency cur)
     {
@@ -138,6 +149,7 @@ public class SinglyLinkedList
             a = a.getNextNode();
             count = count + 1;
         }
+        System.out.println("");
     }
 
 //    public void countCurrency(Currency cur)
@@ -150,9 +162,34 @@ public class SinglyLinkedList
 //        }
 //    }
 
+    /*
+        removeCurrency method which takes a Currency object as parameter and removes that Currency object from
+            the list and may return a copy of the Currency.
+        removeCurrency overload method which takes a node index as parameter and removes the Currency object
+            at that index and may return a copy of the Currency.
+     */
+
+    public void removeCurrency(Currency cur)
+    {
+        LinkNode previousNode = this.getStart();
+        while(!previousNode.getNextNode().getData().isEqual(cur))
+        {
+            previousNode = previousNode.getNextNode();
+        }
+        previousNode.setNextNode(previousNode.getNextNode().getNextNode());
+        this.setCount(this.count - 1);
+        this.setEnd(this.findEnd());
+    }
+
     private LinkNode findEnd()
     {
         LinkNode a = getStart();
+
+        if(this.getCount() == 0)
+        {
+            return null;
+        }
+
         while(a.getNextNode() != null)
         {
             a = a.getNextNode();
