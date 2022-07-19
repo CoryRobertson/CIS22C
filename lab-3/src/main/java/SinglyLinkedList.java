@@ -62,14 +62,6 @@ public class SinglyLinkedList
 
 
 // this is for queue and stack only
-//    public void push(Currency data)
-//    {
-//        LinkNode newNode = new LinkNode(data);
-//        newNode.setNextNode(this.start);
-//        this.setStart(newNode);
-//        this.setEnd(findEnd());
-//        this.setCount(this.count + 1);
-//    }
 
     /**
      * Adds a new currency object to the index specified, e.g. if you have a list

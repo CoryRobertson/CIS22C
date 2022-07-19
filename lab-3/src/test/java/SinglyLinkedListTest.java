@@ -72,16 +72,6 @@ class SinglyLinkedListTest {
         Assertions.assertEquals(3,list.getCount());
     }
 
-//    @Test
-//    void push()
-//    {
-//        SinglyLinkedList list = new SinglyLinkedList(null, null, 0);
-//        list.push(new Dollar(1.0));
-//        list.push(new Dollar(1.1));
-//        list.push(new Dollar(2.5));
-//        assertEquals(3, list.getCount());
-//    }
-
     @Test
     void getNodeAtIndex()
     {

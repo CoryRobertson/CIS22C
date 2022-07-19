@@ -51,17 +51,6 @@ public class Queue extends SinglyLinkedList
         return this.getEnd().getData();
     }
 
-    /*
-        public void push(Currency data)
-        {
-            LinkNode newNode = new LinkNode(data);
-            newNode.setNextNode(this.getStart());
-            this.setStart(newNode);
-            this.setEnd(this.findEnd());
-            this.setCount(this.getCount() + 1);
-        }
-     */
-
     public void printQueue()
     {
         LinkNode a = getStart();

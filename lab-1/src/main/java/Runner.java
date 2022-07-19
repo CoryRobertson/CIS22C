@@ -206,6 +206,6 @@ class Runner
             return false;
         }
 
-        return isPrimeRecur(num, i + 2); // we add two cause we can skip evens
+        return isPrimeRecur(num, i + 2); // we add two because we can skip evens
     }
 }
