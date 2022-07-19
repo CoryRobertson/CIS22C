@@ -15,6 +15,31 @@ class StackTest
     }
 
     @Test
+    void constructorTests()
+    {
+        Stack stack = new Stack();
+        Stack stack2 = new Stack(null, null, 0);
+
+        Dollar[] dollars = {new Dollar(1.2), new Dollar(4.9), new Dollar(7.99)};
+
+        Stack stack3 = new Stack(dollars);
+
+        Assertions.assertNull(stack.getStart());
+        Assertions.assertNull(stack.getEnd());
+        Assertions.assertNull(stack2.getStart());
+        Assertions.assertNull(stack2.getEnd());
+
+        double a = stack3.pop().toDouble();
+        double b = stack3.pop().toDouble();
+        double c = stack3.pop().toDouble();
+
+        Assertions.assertEquals(7.99,a);
+        Assertions.assertEquals(4.9,b);
+        Assertions.assertEquals(1.2,c);
+
+    }
+
+    @Test
     void peek()
     {
         Stack stack = new Stack();
@@ -45,5 +70,40 @@ class StackTest
         stack.push(new Dollar(5.00));
         stack.push(new Dollar(7));
         stack.printStack();
+    }
+
+    @Test
+    void addCurrency()
+    {
+        Stack stack = new Stack();
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> stack.addCurrency(new Dollar(0.1)));
+    }
+
+    @Test
+    void testAddCurrency()
+    {
+        Stack stack = new Stack();
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> stack.addCurrency(new Dollar(0.1),0));
+    }
+
+    @Test
+    void removeCurrency()
+    {
+        Stack stack = new Stack();
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> stack.removeCurrency(0));
+    }
+
+    @Test
+    void testRemoveCurrency()
+    {
+        Stack stack = new Stack();
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> stack.removeCurrency(new Dollar(0.1)));
+    }
+
+    @Test
+    void printList()
+    {
+        Stack stack = new Stack();
+        Assertions.assertThrows(UnsupportedOperationException.class, stack::printList);
     }
 }
