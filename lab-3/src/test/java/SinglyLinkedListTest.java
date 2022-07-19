@@ -227,4 +227,19 @@ class SinglyLinkedListTest {
         Assertions.assertEquals(5,list.countCurrency());
 
     }
+
+    @Test
+    void listFromArray()
+    {
+        Dollar[] currencies = new Dollar[5];
+        double[] values = {1.23,4.96,7.98,0.25,11.45};
+        for (int i = 0; i < currencies.length ;i++)
+        {
+            currencies[i] = new Dollar(values[i]);
+        }
+        SinglyLinkedList list = new SinglyLinkedList(currencies);
+        list.printList();
+        list.addCurrency(new Dollar(12.4),3);
+        list.printList();
+    }
 }

@@ -3,26 +3,6 @@ public class LinkNode
     private LinkNode next;
     private Currency data;
 
-    public LinkNode getNextNode()
-    {
-        return next;
-    }
-
-    public void setNextNode(LinkNode next)
-    {
-        this.next = next;
-    }
-
-    public Currency getData()
-    {
-        return data;
-    }
-
-    public void setData(Currency data)
-    {
-        this.data = data;
-    }
-
     public LinkNode(LinkNode nextNode, Currency dataIn)
     {
         this.next = nextNode;
@@ -43,5 +23,25 @@ public class LinkNode
     public LinkNode(LinkNode nextNode)
     {
         this.next = nextNode;
+    }
+
+    public LinkNode getNextNode()
+    {
+        return next;
+    }
+
+    public void setNextNode(LinkNode next)
+    {
+        this.next = next;
+    }
+
+    public Currency getData()
+    {
+        return data;
+    }
+
+    public void setData(Currency data)
+    {
+        this.data = data;
     }
 }

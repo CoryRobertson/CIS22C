@@ -18,9 +18,19 @@ public class SinglyLinkedList
         this.count = 0;
     }
 
+    public SinglyLinkedList(Currency... currencies)
+    {
+        this.start = null;
+        this.end = null;
+        this.count = 0;
+        for (Currency cur: currencies)
+        {
+            addCurrency(cur);
+        }
+    }
+
     public int getCount()
     {
-
         return count;
     }
 
@@ -61,6 +71,22 @@ public class SinglyLinkedList
 //        this.setCount(this.count + 1);
 //    }
 
+    /**
+     * Adds a new currency object to the index specified, e.g. if you have a list
+     * 0: 0.25
+     * 1: 1.24
+     * 2: 3.14
+     * 3: 4.96
+     * and call addCurrency(new Dollar(7.94), 2), the new list would be
+     * 0: 0.25
+     * 1: 1.24
+     * 2: 7.94
+     * 3: 3.14
+     * 4: 4.96
+     * a worded explanation of this, would be that it adds the new currency to the list, such that the added currency is at the index given.
+     * @param cur currency to add
+     * @param index index to add to, making this object have this index
+     */
     public void addCurrency(Currency cur, int index)
     {
         LinkNode a = this.getStart();
@@ -79,7 +105,10 @@ public class SinglyLinkedList
     }
 
 
-    //this adds to end ??!?
+    /**
+     * no index given, so this function adds the currency object to the end
+     * @param cur a valid Currency Object
+     */
     public void addCurrency(Currency cur)
     {
         LinkNode newNode = new LinkNode(cur);
@@ -102,6 +131,11 @@ public class SinglyLinkedList
 
     }
 
+    /**
+     * returns the integer index of where the given currency object is, if found
+     * @param cur a valid currency object
+     * @return if not found, returns -1, else, the index of the found object
+     */
     public int findCurrency(Currency cur)
     {
         LinkNode a = getStart();
@@ -118,6 +152,10 @@ public class SinglyLinkedList
         return -1;
     }
 
+    /**
+     * @param index the index to go to and get the object
+     * @return the Currency object at the given index
+     */
     public Currency getCurrency(int index)
     {
         LinkNode a = getStart();
@@ -129,6 +167,10 @@ public class SinglyLinkedList
 
     }
 
+    /**
+     * @param index the index to get the node from
+     * @return a LinkNode at the given index
+     */
     public LinkNode getNodeAtIndex(int index)
     {
         LinkNode a = getStart();
@@ -139,6 +181,13 @@ public class SinglyLinkedList
         return a;
     }
 
+
+    /**
+     * Prints out the list in order of appearance, e.g.
+     * 0: Dollar 1.23
+     * 1: Dollar 4.96
+     * 2: Dollar 7.98
+     */
     public void printList()
     {
         LinkNode a = getStart();
@@ -152,6 +201,9 @@ public class SinglyLinkedList
         System.out.println();
     }
 
+    /**
+     * @return the number of objects in the list
+     */
     public int countCurrency()
     {
         LinkNode a = getStart();
@@ -164,6 +216,10 @@ public class SinglyLinkedList
         return count;
     }
 
+    /**
+     * Removes the object at the index, and patches up the node graph
+     * @param index the index to remove
+     */
     public void removeCurrency(int index)
     {
         LinkNode a = this.getStart();
@@ -174,6 +230,10 @@ public class SinglyLinkedList
         removeCurrency(a.getData());
     }
 
+    /**
+     * Removes the currency object given in parameter from the list, will always remove the first occurrence
+     * @param cur the object to search for
+     */
     public void removeCurrency(Currency cur)
     {
         LinkNode previousNode = this.getStart();
@@ -190,6 +250,7 @@ public class SinglyLinkedList
             while (!previousNode.getNextNode().getData().isEqual(cur)) {
                 previousNode = previousNode.getNextNode();
             }
+            // set the next node to the node two ahead, skipping the node intended to be removed
             previousNode.setNextNode(previousNode.getNextNode().getNextNode());
 
         }
@@ -197,7 +258,10 @@ public class SinglyLinkedList
         this.setEnd(this.findEnd());
     }
 
-    private LinkNode findEnd()
+    /**
+     * @return recalculates the end of the list, called hopefully at the end of any method that changes the list
+     */
+    public LinkNode findEnd()
     {
         LinkNode a = getStart();
 
@@ -213,6 +277,9 @@ public class SinglyLinkedList
         return a;
     }
 
+    /**
+     * @return true if and only if there is a start and end to the list, no null nodes
+     */
     public boolean isListEmpty()
     {
         LinkNode a = getStart();
