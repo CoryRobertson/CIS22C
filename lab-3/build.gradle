@@ -5,13 +5,13 @@ plugins {
 }
 
 application {
-    mainClassName = 'Runner'
+    mainClassName = 'Main'
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'Runner'
+                'Main-Class': 'Main'
         )
     }
     from {
