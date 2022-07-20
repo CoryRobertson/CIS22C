@@ -1,3 +1,11 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 3
+ Statement of Lab: To work with linked lists, queues and stacks.
+ */
 public class Stack extends SinglyLinkedList
 {
 
@@ -19,11 +27,19 @@ public class Stack extends SinglyLinkedList
         }
     }
 
+    /**
+     * pre: nothing
+     * post: returns the first object in the stack
+     */
     public Currency peek()
     {
         return this.getStart().getData();
     }
 
+    /**
+     * pre: a valid currency object
+     * post: adds the given currency object to the start, making it the new start
+     */
     public void push(Currency data)
     {
         LinkNode newNode = new LinkNode(data);
@@ -33,6 +49,10 @@ public class Stack extends SinglyLinkedList
         this.setCount(this.getCount() + 1);
     }
 
+    /**
+     * pre: nothing
+     * post: removes and returns the first object in the stack
+     */
     public Currency pop()
     {
         Currency cur =  this.getStart().getData();
@@ -41,6 +61,10 @@ public class Stack extends SinglyLinkedList
         return cur;
     }
 
+    /**
+     * pre: nothing
+     * post: prints the contents of the stack in order
+     */
     public void printStack()
     {
         LinkNode a = getStart();

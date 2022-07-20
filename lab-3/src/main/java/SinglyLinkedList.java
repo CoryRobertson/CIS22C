@@ -1,3 +1,11 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 3
+ Statement of Lab: To work with linked lists, queues and stacks.
+ */
 public class SinglyLinkedList
 {
     private int count;
@@ -61,23 +69,9 @@ public class SinglyLinkedList
     }
 
 
-// this is for queue and stack only
-
     /**
-     * Adds a new currency object to the index specified, e.g. if you have a list
-     * 0: 0.25
-     * 1: 1.24
-     * 2: 3.14
-     * 3: 4.96
-     * and call addCurrency(new Dollar(7.94), 2), the new list would be
-     * 0: 0.25
-     * 1: 1.24
-     * 2: 7.94
-     * 3: 3.14
-     * 4: 4.96
-     * a worded explanation of this, would be that it adds the new currency to the list, such that the added currency is at the index given.
-     * @param cur currency to add
-     * @param index index to add to, making this object have this index
+     * pre: a valid Currency object, an index >= 0 and < the length of the list
+     * post: the given currency object will be added to the list such that its index is the given index from the parameter
      */
     public void addCurrency(Currency cur, int index)
     {
@@ -98,8 +92,8 @@ public class SinglyLinkedList
 
 
     /**
-     * no index given, so this function adds the currency object to the end
-     * @param cur a valid Currency Object
+     * pre: a valid currency object
+     * post: adds the given currency object to the end of the list
      */
     public void addCurrency(Currency cur)
     {
@@ -124,9 +118,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * returns the integer index of where the given currency object is, if found
-     * @param cur a valid currency object
-     * @return if not found, returns -1, else, the index of the found object
+     * pre: a valid currency object
+     * post: returns the integer index of where the given currency object is, if found, else returns -1
      */
     public int findCurrency(Currency cur)
     {
@@ -145,8 +138,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * @param index the index to go to and get the object
-     * @return the Currency object at the given index
+     * pre: index the index to go to and get the object
+     * post: the Currency object at the given index
      */
     public Currency getCurrency(int index)
     {
@@ -160,8 +153,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * @param index the index to get the node from
-     * @return a LinkNode at the given index
+     * pre: the index to get the node from
+     * post: a LinkNode at the given index
      */
     public LinkNode getNodeAtIndex(int index)
     {
@@ -175,10 +168,8 @@ public class SinglyLinkedList
 
 
     /**
-     * Prints out the list in order of appearance, e.g.
-     * 0: Dollar 1.23
-     * 1: Dollar 4.96
-     * 2: Dollar 7.98
+     * pre: nothing
+     * post: prints the contents of the list
      */
     public void printList()
     {
@@ -194,7 +185,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * @return the number of objects in the list
+     * pre: nothing
+     * post: the number of objects in the list
      */
     public int countCurrency()
     {
@@ -209,8 +201,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * Removes the object at the index, and patches up the node graph
-     * @param index the index to remove
+     * pre: index to remove object from
+     * post: nothing
      */
     public void removeCurrency(int index)
     {
@@ -223,8 +215,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * Removes the currency object given in parameter from the list, will always remove the first occurrence
-     * @param cur the object to search for
+     * pre: the object to search for and remove
+     * post: removes the given object if found, if not, nothing happens
      */
     public void removeCurrency(Currency cur)
     {
@@ -251,7 +243,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * @return recalculates the end of the list, called hopefully at the end of any method that changes the list
+     * pre: nothing
+     * post: recalculates the end of the list, called hopefully at the end of any method that changes the list
      */
     public LinkNode findEnd()
     {
@@ -270,7 +263,8 @@ public class SinglyLinkedList
     }
 
     /**
-     * @return true if and only if there is a start and end to the list, no null nodes
+     * pre: nothing
+     * post: true if and only if there is a start and end to the list, no null nodes
      */
     public boolean isListEmpty()
     {

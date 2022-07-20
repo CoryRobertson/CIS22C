@@ -1,3 +1,11 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 3
+ Statement of Lab: To work with linked lists, queues and stacks.
+ */
 public class Queue extends SinglyLinkedList
 {
 
@@ -18,21 +26,10 @@ public class Queue extends SinglyLinkedList
             this.enqueue(cur);
         }
     }
-
-    //enqueue which takes a Currency object as parameter and adds it to the end of the queue.
-    // public void enqueue(Currency cur)
-    // {
-    // 	LinkNode newNode = new LinkNode(cur);
-
-    // 	if(this.getEnd() == null) {
-    // 		this.getStart() = this.getEnd() = newNode;
-    // 		return;
-    // 	}
-    // 	this.getEnd().next = newNode;
-    // 	this.getEnd() = newNode;
-
-    // }
-
+    /**
+     * pre: a valid currency object
+     * post: sets the currency value to the end of the list
+     */
     public void enqueue(Currency cur)
     {
         LinkNode nodeToAdd = new LinkNode(cur);
@@ -49,7 +46,10 @@ public class Queue extends SinglyLinkedList
         this.setCount(this.getCount() + 1);
     }
 
-
+    /**
+     * pre: n/a
+     * post: removing the currency object from the front of the queue
+     */
     public Currency dequeue()
     {
         Currency cur =  this.getStart().getData();
@@ -57,19 +57,28 @@ public class Queue extends SinglyLinkedList
         this.setCount(this.getCount() - 1);
         return cur;
     }
-
+    /**
+     * pre: n/a
+     * post: views the front of the queue
+     */
     public Currency peekFront()
     {
         return
                 this.getStart().getData();
     }
-
+    /**
+     * pre: n/a
+     * post: views the end of the queue
+     */
     public Currency peekRear()
     {
         return
                 this.getEnd().getData();
     }
-
+    /**
+     * pre: n/a
+     * post: prints the queue
+     */
     public void printQueue()
     {
         LinkNode start = this.getStart();
