@@ -1,5 +1,6 @@
 public class Queue extends SinglyLinkedList
 {
+
     public Queue()
     {
         super();
@@ -18,6 +19,20 @@ public class Queue extends SinglyLinkedList
         }
     }
 
+    //enqueue which takes a Currency object as parameter and adds it to the end of the queue.
+    // public void enqueue(Currency cur)
+    // {
+    // 	LinkNode newNode = new LinkNode(cur);
+
+    // 	if(this.getEnd() == null) {
+    // 		this.getStart() = this.getEnd() = newNode;
+    // 		return;
+    // 	}
+    // 	this.getEnd().next = newNode;
+    // 	this.getEnd() = newNode;
+
+    // }
+
     public void enqueue(Currency cur)
     {
         LinkNode nodeToAdd = new LinkNode(cur);
@@ -34,35 +49,38 @@ public class Queue extends SinglyLinkedList
         this.setCount(this.getCount() + 1);
     }
 
+
     public Currency dequeue()
     {
-        LinkNode retnNode = this.getStart();
+        Currency cur =  this.getStart().getData();
         this.setStart(this.getStart().getNextNode());
-        return retnNode.getData();
+        this.setCount(this.getCount() - 1);
+        return cur;
     }
 
     public Currency peekFront()
     {
-        return this.getStart().getData();
+        return
+                this.getStart().getData();
     }
 
     public Currency peekRear()
     {
-        return this.getEnd().getData();
+        return
+                this.getEnd().getData();
     }
 
     public void printQueue()
     {
-        LinkNode a = getStart();
+        LinkNode start = this.getStart();
         int count = 0;
-        while (a != null)
-        {
-            System.out.println(count + ": " + a.getData());
-            a = a.getNextNode();
-            count = count + 1;
+        while(start != null) {
+            System.out.println(count + ": " + start.getData());
+            start = start.getNextNode();
+            count = 1 + count;
         }
-        System.out.println();
     }
+
 
     @Override
     @Deprecated
@@ -93,4 +111,5 @@ public class Queue extends SinglyLinkedList
     public void printList() {
         throw new UnsupportedOperationException();
     }
+
 }
