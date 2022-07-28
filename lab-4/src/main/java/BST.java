@@ -7,64 +7,68 @@ public class BST
         root = null;
     }
 
-    // public BSTNode search(Dollar data)
-    // {
+    public BST(Currency... cur)
+    {
+        root = null;
+        for (Currency currency:cur) {
+            this.insert((Dollar) currency);
+        }
+    }
 
-    // }
-
-    // public void insert(BSTNode node)
-    // {
-
-    // }
-
-    // public void delete(Dollar data)
-    // {
-
-    // }
-
-    // public void print()
-    // {
-
-    // }
-
-    // public int count()
-    // {
-
-    // }
-
+    /**
+     * pre: A BSTNode that is not null
+     * post: Returns to the order of left Node, right node
+     and parent node till there are no more nodes to report.
+     **/
     public void printPostorder(BSTNode node)
     {
         if (node == null)
-        {
+        { // null check
             return;
         }
-
+        // print ordering for post order
         printPostorder(node.getLeftChild());
         printPostorder(node.getRightChild());
-
         System.out.println(node.getData());
 
     }
 
+    /**
+     * pre: A BSTNode that is not null
+     * post: Returns to the order of parent node, left node
+     and right node till there are no more nodes to report.
+     **/
     public void printPreorder(BSTNode node)
     {
         if (node == null)
-        {
+        { // null check
             return;
         }
+        // print ordering for preorder
         System.out.println(node.getData());
         printPreorder(node.getLeftChild());
         printPreorder(node.getRightChild());
 
     }
 
+    /**
+     * pre: A BSTNode that is not null
+     * post: Returns the count of nodes within the BST
+     **/
     public int count(BSTNode node)
     {
-        if(node == null) {return 0;}
-
+        if(node == null)
+        {
+            return 0;
+        }
         return 1 + count(node.getLeftChild()) + count(node.getRightChild());
     }
 
+    /**
+     * pre: A BSTNode that is not null
+     * post: Returns in the order of left Node, parent node
+     and right node till there are no more nodes to report.
+     **/
     public void printInOrder(BSTNode node)
     {
         if (node == null)
@@ -78,10 +82,19 @@ public class BST
 
     }
 
+    /**
+     * pre: A BST root that is not null
+     * post: Returns the height of the BST subrtacted by 1
+     **/
     public int getHeight(BSTNode root)
     {
         return height(root) - 1;
     }
+
+    /**
+     * pre: A BST root that is not null
+     * post: Returns 0 if the root of the BST is null
+     **/
     private int height(BSTNode root)
     {
         if(root == null)
@@ -102,6 +115,21 @@ public class BST
         }
     }
 
+    /**
+     * pre: nothing
+     * post: Returns a in the order of left Node, right node
+     and parent node till there are no more nodes to report.
+     **/
+    public void printLevelOrder()
+    {
+        printLevelOrder(this.getRoot());
+    }
+
+    /**
+     * pre: A BSTNode that is not null
+     * post: Returns a in the order of left Node, right node
+     and parent node till there are no more nodes to report.
+     **/
     public void printLevelOrder(BSTNode node)
     {
         int he = getHeight(node);
@@ -111,7 +139,7 @@ public class BST
         }
     }
 
-    public void printCurrentLevel(BSTNode root, int level)
+    private void printCurrentLevel(BSTNode root, int level)
     {
         if(root == null)
         {
@@ -128,6 +156,87 @@ public class BST
         }
     }
 
+    /**
+     * pre:  a valid non null Dolllar object
+     * post: removes the given dollar object if found in the tree, returns null if not found.
+     */
+    public BSTNode delete(Dollar key)
+    {
+        return delete(this.getRoot(), key);
+    }
+
+    /**
+     * pre: a valid non-null node, commonly root, and a valid non null Dolllar object
+     * post: removes the given dollar object if found in the tree, returns null if not found.
+     */
+    public BSTNode delete(BSTNode root, Dollar key)
+    {
+
+        if(root == null)
+        {
+            return root;
+        }
+
+        double keyv = key.toDouble();
+        double rootkey = root.getData().toDouble();
+
+        if(keyv < rootkey)
+        {
+            root.setLeftChild(delete(root.getLeftChild(), key));
+        }
+        else if(keyv > rootkey)
+        {
+            root.setRightChild(delete(root.getRightChild(), key));
+        }
+        else
+        {
+
+            if (root.getLeftChild() == null)
+            {
+                return root.getRightChild();
+            }
+            else if (root.getRightChild() == null)
+            {
+                return root.getLeftChild();
+            }
+
+            root.setData(minValue(root.getRightChild()));
+
+            root.setRightChild(delete(root.getRightChild(), root.getData()));
+        }
+
+        return root;
+
+    }
+
+    /**
+     * pre: a valid node
+     * post: returns the smalles value of an object in the given node tree
+     */
+    private Dollar minValue(BSTNode root)
+    {
+        Dollar min = root.getData();
+        while (root.getLeftChild() != null)
+        {
+            min = root.getLeftChild().getData();
+            root = root.getLeftChild();
+        }
+        return min;
+    }
+
+    /**
+     * pre: A BSTNode that is not null and a Dollar value
+     * post: Returns the specific dollar value that was searched.
+     **/
+    public BSTNode search(Dollar key)
+    {
+        return search(this.getRoot(), key);
+    }
+
+    /**
+     * pre: A BSTNode that is not null and a Dollar value
+     * post: Returns the specific dollar value that was searched.
+     **/
     public BSTNode search(BSTNode root, Dollar key)
     {
         // if tree is empty or the root has the key
@@ -135,7 +244,8 @@ public class BST
         {
             return root;
         }
-        if(root.getData().isGreater(key))
+
+        if(!root.getData().isGreater(key))
         {
             return search(root.getRightChild(), key);
         }
@@ -143,17 +253,20 @@ public class BST
         return search(root.getLeftChild(), key);
     }
 
-    public BSTNode insert(BSTNode root, Dollar key)
+    /**
+     * pre: a valid non-null bst-node and dollar object to insert into the tree
+     * post: adds the given node to the tree, to the right place such that the tree is still valid
+     */
+    private BSTNode insert(BSTNode root, Dollar key)
     {
- 
 
         if (root == null)
-        {
+        { // root is empty, so make root contain the new key
             root = new BSTNode(key);
             return root;
         }
 
-        if (root.getData().isGreater(key))
+        if (root.getData().isGreater(key)) // decision to add to the left or right of the currently searched node
         {
             root.setLeftChild(insert(root.getLeftChild(), key));
         }
@@ -165,11 +278,19 @@ public class BST
         return root;
     }
 
+    /**
+     * pre: a dollar object to insert into the tree
+     * post: adds the given node to the tree, to the right place such that the tree is still valid
+     */
     public void insert(Dollar key)
     {
         root = insert(root, key);
     }
 
+    /**
+     * pre: nothing
+     * post: returns if the list is empty
+     */
     public boolean isEmpty()
     {
         return this.getRoot() == null;
