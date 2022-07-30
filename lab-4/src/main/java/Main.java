@@ -1,3 +1,11 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 4
+ Statement of Lab: To demonstrate the functionality of Binary Search Trees using the 4 traversal methods
+ */
 import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -8,18 +16,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        // tree.setRoot(new BSTNode(new Dollar(1.0)));
-        // tree.getRoot().setLeftChild(new BSTNode(new Dollar(2.0)));
-        // tree.getRoot().setRightChild(new BSTNode(new Dollar(3.0)));
-        // tree.getRoot().getLeftChild().setLeftChild(new BSTNode(new Dollar(4.0)));
-        // tree.getRoot().getLeftChild().setRightChild(new BSTNode(new Dollar(5.0)));
-
-        // tree.printPostorder(tree.getRoot());
-        // tree.printPreorder(tree.getRoot());
-        // tree.printInOrder(tree.getRoot());
-        // System.out.println(tree.getHeight(tree.getRoot()));
-        // tree.levelOrderTraversal(tree.getRoot());
-        // tree.printLevelOrder();
 
         System.out.println("Welcome to our fourth lab. This lab was written by "
                 + "Naran Nathan and Cory Robertson");
@@ -51,32 +47,129 @@ public class Main {
         // BST tree = new BST();
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Printed below are the 4 traversal methods");
-        //tree.
+        System.out.println("Printed below are the 4 traversal methods");
+        log("Printed below are the 4 traversal methods");
 
-               // System.out.print("Menu options:");
-        System.out.print("1. Search for value\n"
-                + "2. Insert value\n"
-                + "3. Delete value");
-        System.out.print("Enter your choice(1-3)");
-        int value = input.nextInt();
+        System.out.println("\nBreadth First:");
+        log("\nBreadth First:");
 
-        if (value == 1) {
-            System.out.print("Enter currency value to search: ");
-            double search = input.nextDouble();
-            //tree.search(null, search);
+        tree.printLevelOrder(true);
 
-        } else if (value == 2) {
-            System.out.print("Enter currency value to insert: ");
-            //Dollar insert = input.nextDouble();
-            //tree.insert(insert);
+        System.out.println("\nIn order:");
+        log("\nIn order:");
+
+        tree.printInOrder(tree.getRoot(), true);
+
+        System.out.println("\nPre order:");
+        log("\nPre order:");
+
+        tree.printPreorder(tree.getRoot(), true);
+
+        System.out.println("\nPost order:");
+        log("\nPost order:");
+
+        tree.printPostorder(tree.getRoot(), true);
+
+        int value = -1;
+
+
+
+
+        while (value != 0)
+        {
+            System.out.println("Menu options:");
+            System.out.println("""
+                    1. Search for value
+                    2. Insert value
+                    3. Delete value
+                    0. Quit program""");
+            System.out.println("Enter your choice(0-3):");
+            value = input.nextInt();
+            if (value == 1) {
+                System.out.println("Enter currency value to search: ");
+                double search = input.nextDouble();
+                if(search > 0)
+                {
+                    Dollar searchDollar = new Dollar(search);
+                    BSTNode found = tree.search(tree.getRoot(), searchDollar);
+
+                    if (found == null) {
+                        System.out.println("Unable to find searched currency.");
+                    }
+                    else
+                    {
+                        System.out.println("Found currency: " + searchDollar.toString());
+                    }
+                }
+                else
+                {
+                    System.out.println("Invaid input");
+                }
+
+            } else if (value == 2) {
+                System.out.println("Enter currency value to insert: ");
+                double insert = input.nextDouble();
+                if(insert > 0)
+                {
+                    Dollar insertDollar = new Dollar(insert);
+                    tree.insert(insertDollar);
+                }
+                else
+                {
+
+                    //log("Cannot insert invalid currency");
+                    System.out.println("Cannot insert invalid currency");
+                }
+
+
+            } else if (value == 3) {
+                System.out.println("Enter currency value to delete: ");
+                //log("Enter currency value to delete: ");
+                double delete = input.nextDouble();
+                if(delete > 0)
+                {
+                    Dollar deleteDollar = new Dollar(delete);
+                    tree.delete(tree.getRoot(), deleteDollar);
+                    System.out.println("Currency deleted");
+                    //log("Currency deleted");
+                }
+                else
+                {
+                    System.out.println("Cannot delete invalid currency");
+                    //log("Cannot delete invalid currency")
+                }
+
+
+            }
 
         }
+        System.out.println("Would you like to log the output of the tree to a file(y/n)?");
+        String inpt = input.next();
+        if(inpt.equalsIgnoreCase("y"))
+        {
+            log("Here are the four updated traversal methods.");
+
+            log("\nBreadth First:");
+
+            tree.printLevelOrder(true);
+
+            log("\nIn order:");
+
+            tree.printInOrder(tree.getRoot(), true);
+
+            log("\nPre order:");
+
+            tree.printPreorder(tree.getRoot(), true);
+
+            log("\nPost order:");
+
+            tree.printPostorder(tree.getRoot(), true);
+        }
+        System.out.print("Goodbye");
 
     }
 
-    public static boolean log(String s)
-    {
+    public static boolean log(String s) {
 
         FileWriter fw;
         BufferedWriter bw;

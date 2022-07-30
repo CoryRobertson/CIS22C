@@ -1,11 +1,18 @@
+/*
+ Authors:
+ Cory Robertson
+ Naran Nathan
+ Lab Team: 26
+ Lab Number: 4
+ Statement of Lab: To demonstrate the functionality of Binary Search Trees using the 4 traversal methods
+ */
 public class BSTNode {
 
     private Dollar data;
     private BSTNode leftChild;
     private BSTNode rightChild;
 
-    public BSTNode(Dollar dollar)
-    {
+    public BSTNode(Dollar dollar) {
         this.data = dollar;
         leftChild = null;
         rightChild = null;
