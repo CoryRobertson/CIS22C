@@ -32,6 +32,15 @@ public class HashTable
         int hash = getHash(key);
 
         Entry arrayVal = array[hash];
+        int i = 1;
+        while(arrayVal.getKey() != null)
+        {
+            // this loop is for quadratic probing
+            hash = (getHash(key) + i*i) % this.size;
+            arrayVal = array[hash];
+            i++;
+        }
+
         Entry newVal = new Entry(key, value);
         newVal.next = arrayVal.next;
         arrayVal.next = newVal;
@@ -40,23 +49,27 @@ public class HashTable
 
     public Dollar get(Dollar key)
     {
-        Dollar retn = null;
 
         int hash = getHash(key);
+        int i = 1;
 
-        Entry arrayValue = array[hash];
 
-        while(arrayValue != null)
+        Entry arrayVal = array[hash];
+        while(arrayVal != null)
         {
-            if(arrayValue.getKey().isEqual(key))
+            if(arrayVal.getKey().isEqual(key))
             {
-                retn = arrayValue.getValue();
-                break;
+                return arrayVal.getValue();
             }
-            arrayValue = arrayValue.next;
+            else
+            {
+                hash = (getHash(key) + i*i) % this.size;
+                arrayVal = array[hash];
+                i++;
+            }
+//            arrayVal = arrayVal.next;
         }
-
-        return retn;
+        return null;
     }
 
 }
