@@ -232,4 +232,45 @@ class SinglyLinkedListTest {
         list.addCurrency(new Dollar(12.4),3);
         list.printList();
     }
+
+    @Test
+    void weirdThing()
+    {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.addCurrency(new Dollar(1.0));
+        list.addCurrency(new Dollar(2.0));
+        list.addCurrency(new Dollar(3.0));
+        list.addCurrency(new Dollar(4.0));
+        list.addCurrency(new Dollar(5.0));
+
+        Runnable r = () -> // breakpoint here
+        {
+            LinkNode current = list.getStart();
+            LinkNode prev = null;
+            LinkNode next = null;
+
+            while(current != null)
+            {
+                next = current.getNextNode();
+                current.setNextNode(prev);
+                prev = current;
+                current = next;
+
+            }
+            list.setStart(prev);
+
+        };
+        r.run();
+        System.out.println(); // breakpoint here
+
+    }
+
+    @Test
+    void weirdshit2()
+    {
+        System.out.println();
+
+    }
+
+    private int h(int x) {return x % 7;}
 }

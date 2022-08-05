@@ -160,6 +160,10 @@ public class BST {
         return delete(this.getRoot(), key);
     }
 
+    public BSTNode delete(double key) {
+        return delete(this.getRoot(), new Dollar(key));
+    }
+
     /**
      * pre: a valid non-null node, commonly root, and a valid non null Dolllar
      * object
@@ -263,6 +267,11 @@ public class BST {
      */
     public void insert(Dollar key) {
         root = insert(root, key);
+    }
+
+    public void insert(double dol) {
+        Dollar dollar = new Dollar(dol);
+        insert(dollar);
     }
 
     /**
